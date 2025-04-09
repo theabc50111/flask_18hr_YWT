@@ -1,0 +1,32 @@
+
+<!-- practice start -->
+<!-- 宣告一個巨集 -->
+{% macro easy_row(arg_data, arg_tag) -%}
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">The table header</th>
+        </tr>
+    </thead>    
+    <tbody>
+        {% for record in arg_data %}
+        <tr>
+            <td>
+                <{{ arg_tag }}>{{ record[0] }}</{{ arg_tag }}>
+            </td>
+            <td>
+                <{{ arg_tag }}>{{ record[1] }}</{{ arg_tag }}>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{%- endmacro %}
+
+{% if data_jinja%}
+<!-- 呼叫巨集 -->
+{{easy_row(data_jinja,"h3")}}
+{% else %}
+<h1> No data! </h1>
+{% endif %}
+<!-- practice end -->
