@@ -1,0 +1,16 @@
+{% extends "parts/base.html" %}
+
+{% block title %}file{% endblock title %}
+
+{% block page_content %}
+{{ super() }}
+<!-- practice start -->
+<form method="POST" action="/download_file">
+    <div>
+        <label for="formFileLg" class="form-label">Large file input example</label>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="download_file">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<!-- practiice end -->
+{% endblock page_content %}
