@@ -1,0 +1,15 @@
+{% extends "parts/base.html" %}
+
+{% block title %}index{% endblock title %}
+{% block page_content %}
+{{ super() }}
+<button type="button" class="btn btn-primary" id="fetch_origin_allow_cors">Fetch allowed CORS API</button>
+<button type="button" class="btn btn-primary" id="fetch_origin_not_allow_cors">Fetch not allowed CORS API</button>
+<br>
+<p id='result'></p>
+{% endblock page_content %}
+
+
+
+<!-- practice start -->
+<!-- practice end -->
