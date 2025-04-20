@@ -6,7 +6,9 @@ from pathlib import Path
 
 from flask import Flask, redirect, render_template, request, session, url_for
 
+# ========== practice start ==========
 from flask_session import Session
+# ========== practice end ==========
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "hard to guess string"
