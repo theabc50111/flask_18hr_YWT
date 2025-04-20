@@ -20,10 +20,9 @@ def index():
                            page_header="page_header",
                            current_time=datetime.utcnow())
 
-
+# ========== practice start ==========
 @app.route('/data-list')
 def data_list():
-
     # query string
     page = int(request.args.get('page') if request.args.get('page') else 1)
     each_page = 5
@@ -81,6 +80,8 @@ def data_edit():
         connection.close()
         return render_template('data_edit.html',
                                 page_header="edit data",id_list=id_list)
+# ========== practice end ==========
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
