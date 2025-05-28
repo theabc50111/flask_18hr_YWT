@@ -10,9 +10,6 @@ auth_app = Blueprint('auth_app', __name__)
 
 
 
-
-print("!" * 20)
-
 USERS = {
     "alice": {"password": "aliceP@ssw0rd", "role": "user"},
     "bob": {"password": "bobP@ssw0rd", "role": "admin"},
