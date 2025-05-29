@@ -1,5 +1,7 @@
 from flask import Flask, redirect, render_template, request, session, url_for
+# ========== practice start ==========
 from flask.sessions import SecureCookieSessionInterface
+# ========== practice end ==========
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "hard to guess string"
