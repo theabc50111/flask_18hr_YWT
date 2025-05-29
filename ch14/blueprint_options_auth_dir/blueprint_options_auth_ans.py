@@ -3,12 +3,11 @@ from pathlib import Path
 
 from flask import (Blueprint, Flask, redirect, render_template, request,
                    session, url_for)
-
 from flask_session import Session
 
-auth_app = Blueprint('auth_app', __name__)
-
-
+# practice start
+blueprint_options_auth_app = Blueprint('blueprint_options_auth_app', __name__, url_prefix="/auth", template_folder='blueprint_options_auth_templates', static_folder='blueprint_options_auth_static')
+# practice end
 
 USERS = {
     "alice": {"password": "aliceP@ssw0rd", "role": "user"},
@@ -21,7 +20,7 @@ def login_required(role=None):
         @wraps(f)
         def wrapper(*args, **kwargs):
             if "username" not in session:
-                return redirect(url_for("auth_app.login"))
+                return redirect(url_for("blueprint_options_auth_app.login"))
             if role and session.get("role") != role:
                 print(f"session.get('role')={session.get('role')}, role={role}")
                 return render_template(
@@ -35,7 +34,7 @@ def login_required(role=None):
     return decorator
 
 
-@auth_app.route("/login", methods=["GET", "POST"])
+@blueprint_options_auth_app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         session["username"] = request.form["username"]
@@ -47,10 +46,12 @@ def login():
         else:
             session["role"] = USERS.get(session["username"]).get("role")
         return redirect(url_for("data_list"))
-    return render_template("login.html", page_header="Login")
+    # practice start
+    return render_template("new_login(ans).html")
+    # practice end
 
 
-@auth_app.route("/logout")
+@blueprint_options_auth_app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("index"))

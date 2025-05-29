@@ -5,13 +5,16 @@ import sqlalchemy as db
 from flask import Flask, render_template, request
 from sqlalchemy import func
 
-from auth import auth_app, login_required
+# practice start
+from blueprint_auth_ans import auth_app, login_required
+# practice end
 from flask_session import Session
 
 app = Flask(__name__)
 
-# register auth blueprint
+# practice start
 app.register_blueprint(auth_app)
+# practice end
 app.config["SECRET_KEY"] = "hard to guess string"
 app.config["SESSION_TYPE"] = "filesystem"
 app.config["SESSION_FILE_DIR"] = Path(__file__).parent / "flask_session"
@@ -51,7 +54,6 @@ def data_list():
     query = db.select(table_customers).limit(each_page).offset((page - 1) * each_page)
     proxy = connection.execute(query)
     results = proxy.fetchall()
-    print(table_customers.columns.keys())
 
     # Close connection
     connection.close()
@@ -122,5 +124,5 @@ def data_edit():
 
 
 if __name__ == "__main__":
-    print(app.url_map)
+    print(app.url_map)  # To check the route `/login`, you can either watch it on a terminal or connect to /login through a browser
     app.run(debug=True, host="0.0.0.0", port=5000)

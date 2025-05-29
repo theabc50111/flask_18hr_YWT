@@ -8,7 +8,8 @@ USERS = {
 }
 
 
-def init_auth(app):
+# practice start
+# practice end
     @app.route("/login", methods=["GET", "POST"])
     def login():
         if request.method == "POST":
