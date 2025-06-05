@@ -1,9 +1,6 @@
-import math
+from functools import wraps
 from pathlib import Path
 
-import sqlalchemy as db
-from sqlalchemy import func
-from functools import wraps
 from flask import Flask, redirect, render_template, request, session, url_for
 
 from flask_session import Session
@@ -15,11 +12,11 @@ app.config["SESSION_FILE_DIR"] = Path(__file__).parent / "flask_session"
 Session(app)
 
 # sql setting
-path_to_db = "./db/chinook.db"
-table = "customers"
-engine = db.create_engine(f"sqlite:///{path_to_db}")
-metadata = db.MetaData()
-table_customers = db.Table(table, metadata, autoload_with=engine)
+db = None
+table = None
+engine = None
+metadata = None
+table_customers = None
 
 USERS = {
     "alice": {"password": "aliceP@ssw0rd", "role": "user"},
@@ -27,6 +24,7 @@ USERS = {
 }
 
 
+# ========== practice start ==============
 def login_required(role=None):
     def decorator(f):
         @wraps(f)
@@ -44,6 +42,7 @@ def login_required(role=None):
         return wrapper
 
     return decorator
+# ========== practice end ==============
 
 
 @app.route("/")
@@ -56,68 +55,49 @@ def login():
     if request.method == "POST":
         session["username"] = request.form["username"]
         session["password"] = request.form["password"]
+        # ========== practice start ==============
         if session["username"] not in USERS.keys():
             return render_template("index.html", page_header="User not found")
         elif session["password"] != USERS.get(session["username"]).get("password"):
             return render_template("index.html", page_header="Wrong password")
         else:
             session["role"] = USERS.get(session["username"]).get("role")
+        # ========== practice end ==============
         return redirect(url_for("data_list"))
     return render_template("login.html", page_header="Login")
 
 
+# ========== practice start ==============
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("index"))
+# ========== practice end ==============
 
 
 @app.route("/data-list")
+# ========== practice start ==============
 @login_required()
+# ========== practice end ==============
 def data_list():
-    # query string
-    page = int(request.args.get("page") if request.args.get("page") else 1)
-    each_page = 5
-
-    # set total pages
-    connection = (
-        engine.connect()
-    )  # connection 要放在view function中，否則會出現thread error
-    query = db.select(func.count()).select_from(table_customers)
-    proxy = connection.execute(query)
-    total_pages = math.ceil(
-        proxy.fetchall()[0][0] / each_page
-    )  # [0][0] => inorder to get the value
-
-    # fetch data & decided by page
-    query = db.select(table_customers).limit(each_page).offset((page - 1) * each_page)
-    proxy = connection.execute(query)
-    results = proxy.fetchall()
-    print(table_customers.columns.keys())
-
-    # Close connection
-    connection.close()
-
-    return render_template(
-        "data_list.html",
-        page_header="list all data",
-        total_pages=total_pages,
-        outputs=results,
-        page=page,
-    )
+    return "page of list all data"
 
 
 @app.route("/data-edit", methods=["GET", "POST"])
+# ========== practice start ==============
 @login_required(role="admin")
+# ========== practice end ==============
 def data_edit():
     if request.method == "POST":
         try:
             connection = (
                 engine.connect()
             )  # connection 要放在view function中，否則會出現thread error
+
             query = db.select(table_customers.c.CustomerId).order_by(
                 table_customers.c.CustomerId
             )
+
             proxy = connection.execute(query)
             id_list = [idx[0] for idx in proxy.fetchall()]
             if request.form["FirstName"]:  # 希望至少要填寫名子
@@ -131,12 +111,7 @@ def data_edit():
             else:
                 raise Exception
         except:
-            return render_template(
-                "data_edit.html",
-                page_header="edit data",
-                id_list=id_list,
-                status="Failed",
-            )
+            raise ValueError("You should input the value of FirstName")
         else:
             return render_template(
                 "data_edit.html",

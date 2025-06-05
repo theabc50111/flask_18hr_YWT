@@ -29,5 +29,5 @@ def test_get_with_session(arg_uname, arg_pwd, expected_status_code, client):
         session["username"] = arg_uname
         session["password"] = arg_pwd
 
-    response = client.get("/test_session")
+    response = client.get("/valid_session")
     assert response.status_code == expected_status_code
