@@ -9,12 +9,15 @@ app.config['CACHE_TYPE'] = 'SimpleCache'
 cache = Cache(app)
 
 
+# ========== practice start ==========
 @app.route('/get_computation')
 def get_computation():
     result = slow_compute(request.args.get('n', default=1, type=int))
     return f"<h1>result of slow_compute() = {result}</h1>"
+# ========== practice end ==========
 
 
+# ========== practice start ==========
 @cache.memoize(timeout=180)
 def slow_compute(n):
     # the cache key is based on the function name and its arguments
@@ -23,6 +26,7 @@ def slow_compute(n):
         time.sleep(1)
         print(f"Computing: {i} seconds remaining")
     return n * 10
+# ========== practice end ==========
 
 
 if __name__ == '__main__':
