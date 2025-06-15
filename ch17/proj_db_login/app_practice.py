@@ -17,12 +17,6 @@ USERS = {
     "bob": {"password": "bobP@ssw0rd", "role": "admin"},
 }
 # ========== practice start ==============
-# sql setting
-db = None
-table = None
-engine = None
-metadata = None
-table_customers = None
 # ========== practice end ==============
 
 
@@ -103,8 +97,6 @@ def data_edit():
             else:
                 raise Exception
         # ========== practice start ==============
-        except:
-            raise ValueError("You should input the value of FirstName")
         # ========== practice end ==============
         else:
             return render_template(

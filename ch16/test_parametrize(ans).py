@@ -4,6 +4,7 @@ import pytest
 def square(x):
     return x * x
 
+# ========== practice start ==========
 @pytest.mark.parametrize(
     argnames="x, expected",
     argvalues=[
@@ -13,6 +14,7 @@ def square(x):
     ],
     ids=["2 squared", "3 squared", "4 squared"]
 )
+# ========== practice end ==========
 def test_square(x, expected):
     assert square(x) == expected
 

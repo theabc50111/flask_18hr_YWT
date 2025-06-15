@@ -17,6 +17,7 @@ def client(test_flask_app):
     return test_flask_app.test_client()
 
 
+# ========== practice start ==========
 @pytest.mark.parametrize(
     argnames=["arg_uname", "arg_pwd", "expected_status_code"],
     argvalues=[
@@ -31,3 +32,4 @@ def test_get_with_session(arg_uname, arg_pwd, expected_status_code, client):
 
     response = client.get("/valid_session")
     assert response.status_code == expected_status_code
+# ========== practice end ==========

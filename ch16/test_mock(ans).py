@@ -21,8 +21,10 @@ def test_process():
 
 # Test using mocker
 def test_process_with_mock(mocker):
+    # =========== practice start ==============
     # Patch the __name__.slow_function  that is invoked in process()
     mocker.patch(target=f"{__name__}.slow_function", return_value="mocked")
+    # =========== practice end ==============
     result = process()
     print(f"With mocker, the result of process(): {result}")
     assert result == "Result: mocked"

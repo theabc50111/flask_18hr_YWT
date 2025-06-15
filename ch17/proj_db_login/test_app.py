@@ -16,11 +16,7 @@ def test_flask_app():
 def client(test_flask_app):
     return test_flask_app.test_client()
 
-
-# USERS = {
-#    "alice": {"password": "aliceP@ssw0rd", "role": "user"},
-#    "bob": {"password": "bobP@ssw0rd", "role": "admin"},
-# }
+# ========== practice start ==========
 @pytest.mark.parametrize(
     argnames="username, password, role, expected_html",
     argvalues=[
@@ -75,3 +71,4 @@ def test_data_edit_post(client, mocker, form_data, is_raises_error):
     else:
         response = client.post("/data-edit", data=form_data)
         assert "Success" in response.data.decode("utf8")
+# ========== practice end ==========

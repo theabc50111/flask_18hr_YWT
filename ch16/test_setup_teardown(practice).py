@@ -1,9 +1,6 @@
-import pytest
+# ========== practice start ==========
+# ========== practice end ==========
 
 
 # ========== practice start ==========
-@pytest.fixture(name="num1")
-def set_num1():
-    return 50
-
 # ========== practice end ==========

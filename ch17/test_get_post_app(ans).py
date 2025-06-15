@@ -1,7 +1,10 @@
 import pytest
+# ========== practice start ==========
 from markupsafe import Markup
 
 from get_post_app import app
+
+# ========== practice end ==========
 
 
 @pytest.fixture()
@@ -17,7 +20,7 @@ def test_flask_app():
 def client(test_flask_app):
     return test_flask_app.test_client()
 
-
+# ========== practice start ==========
 def test_get_request(client):
     response = client.get("/test_get", query_string={"a": 10, "b": "value_of_b"})
     print(f"***** {response.data} *****")
@@ -40,3 +43,5 @@ def test_post_request(client):
     print(f"{Markup(tbl_html_str).unescape()}")
     assert response.status_code == 200
     assert "test_user@gmail.com" in response.data.decode("utf8")
+
+# ========== practice end ==========
