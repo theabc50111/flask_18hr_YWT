@@ -10,8 +10,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('cors.html',
-                           api_url_origin_allow_cors='http://192.168.0.17:5050/',
-                           api_url_origin_not_allow_cors='http://192.168.0.17:5051/',  # press F12 to open dev tool, and check the console
+                           api_url_origin_allow_cors='http://127.0.0.1:5050/',
+                           api_url_origin_not_allow_cors='http://127.0.0.1:5051/',  # press F12 to open dev tool, and check the console
                            page_header='Cross-Origin Resource Sharing (CORS) - Allow and Not Allow',)
 # ----------practice end------------
 
