@@ -8,20 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Document{% endblock title %}</title>
     {% block styles %}
-    {% include "_styles.html" %}
+    {% include "parts/_styles.html" %}
     {% endblock styles %}
     {% block scripts %}
-    {% include "_scripts.html" %}
+    {% include "parts/_scripts.html" %}
     {% endblock scripts %}
     {% endblock head %}
 </head>
 
 <body>
     {% block body %}
-    {% include "_navbar.html" %}
+    {% include "parts/_navbar.html" %}
     <div class="container">
     {% block page_content %}
-    {% include "_page_header.html" %}
+    {% include "parts/_page_header.html" %}
     {% endblock page_content %}
     </div>
     
