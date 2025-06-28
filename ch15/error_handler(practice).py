@@ -10,9 +10,9 @@ def index():
                            page_header="page_header")
 
 
-# practice start
+# ========== practice start ==========
 
-# practice end
+# ========== practice end ==========
 
 
 if __name__ == "__main__":
