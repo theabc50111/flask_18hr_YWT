@@ -39,8 +39,6 @@ def index():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        session["username"] = request.form["username"]
-        session["password"] = request.form["password"]
         # ========== practice start ==============
         # ========== practice end ==============
         return redirect(url_for("data_list"))
