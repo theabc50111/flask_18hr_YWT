@@ -1,0 +1,42 @@
+{% extends "parts/base.html" %}
+
+{% block title %}form{% endblock title %}
+
+{% block page_content %}
+{{ super() }}
+<!-- practice start -->
+<form method="POST" action="{{request.full_path}}">
+<!-- practice end -->
+    <div class="mb-3">
+        <label for="exampleInputUsername1" class="form-label">User name</label>
+        <input type="text" name="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp">
+        <div id="usernameHelp" class="form-text">We'll never share your username with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+        <tr>
+            <th colspan="2">The table header</th>
+        </tr>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in data %}
+        <tr>
+            <td scope="row">
+                {{ record[0] }}
+            </td>
+            <td scope="row">
+                {{ record[1] }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock page_content %}
