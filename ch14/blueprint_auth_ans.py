@@ -11,7 +11,7 @@ from flask_session import Session
 
 
 # ========== practice start ==========
-auth_app = Blueprint('auth_app', __name__)
+auth_app = Blueprint('auth_app_100', __name__)
 # ========== practice end ==========
 
 USERS = {
@@ -26,7 +26,7 @@ def login_required(role=None):
         def wrapper(*args, **kwargs):
             if "username" not in session:
                 # ========== practice start ==========
-                return redirect(url_for("auth_app.login"))
+                return redirect(url_for("auth_app_100.login"))
                 # ========== practice start ==========
             if role and session.get("role") != role:
                 print(f"session.get('role')={session.get('role')}, role={role}")
