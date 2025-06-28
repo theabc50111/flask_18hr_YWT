@@ -1,13 +1,9 @@
 from functools import wraps
 from pathlib import Path
 
-# ========== practice start ==========
-from flask import Flask, redirect, render_template, request, session, url_for
-
+from flask import (Blueprint, Flask, redirect, render_template, request,
+                   session, url_for)
 from flask_session import Session
-
-# ========== practice end ==========
-
 
 # ========== practice start ==========
 # ========== practice end ==========
@@ -23,8 +19,7 @@ def login_required(role=None):
         @wraps(f)
         def wrapper(*args, **kwargs):
             if "username" not in session:
-                # ========== practice start ==========
-                # ========== practice start ==========
+                return redirect(url_for("blueprint_options_auth_app.login"))
             if role and session.get("role") != role:
                 print(f"session.get('role')={session.get('role')}, role={role}")
                 return render_template(
@@ -38,24 +33,23 @@ def login_required(role=None):
     return decorator
 
 
-# ========== practice start ==========
-# ========== practice end ==========
+@blueprint_options_auth_app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        if request.form["username"] not in USERS.keys():
+        session["username"] = request.form["username"]
+        session["password"] = request.form["password"]
+        if session["username"] not in USERS.keys():
             return render_template("index.html", page_header="User not found")
-        elif request.form["password"] != USERS.get(request.form["username"]).get("password"):
+        elif session["password"] != USERS.get(session["username"]).get("password"):
             return render_template("index.html", page_header="Wrong password")
         else:
-            session["username"] = request.form["username"]
-            session["password"] = request.form["password"]
             session["role"] = USERS.get(session["username"]).get("role")
         return redirect(url_for("data_list"))
-    return render_template("login.html", page_header="Login")
+    # ========== practice start ==========
+    # ========== practice end ==========
 
 
-# ========== practice start ==========
-# ========== practice end ==========
+@blueprint_options_auth_app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("index"))
