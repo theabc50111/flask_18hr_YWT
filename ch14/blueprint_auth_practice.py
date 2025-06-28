@@ -2,11 +2,12 @@ from functools import wraps
 from pathlib import Path
 
 # practice start
-from flask import (Flask, redirect, render_template, request,
-                   session, url_for)
-# practice end
+from flask import Flask, redirect, render_template, request, session, url_for
 
 from flask_session import Session
+
+# practice end
+
 
 # practice start
 # practice end
@@ -41,13 +42,13 @@ def login_required(role=None):
 # practice end
 def login():
     if request.method == "POST":
-        session["username"] = request.form["username"]
-        session["password"] = request.form["password"]
-        if session["username"] not in USERS.keys():
+        if request.form["username"] not in USERS.keys():
             return render_template("index.html", page_header="User not found")
-        elif session["password"] != USERS.get(session["username"]).get("password"):
+        elif request.form["password"] != USERS.get(request.form["username"]).get("password"):
             return render_template("index.html", page_header="Wrong password")
         else:
+            session["username"] = request.form["username"]
+            session["password"] = request.form["password"]
             session["role"] = USERS.get(session["username"]).get("role")
         return redirect(url_for("data_list"))
     return render_template("login.html", page_header="Login")
