@@ -5,8 +5,8 @@ from flask import (Blueprint, Flask, redirect, render_template, request,
                    session, url_for)
 from flask_session import Session
 
-# practice start
-# practice end
+# ========== practice start ==========
+# ========== practice end ==========
 
 USERS = {
     "alice": {"password": "aliceP@ssw0rd", "role": "user"},
@@ -45,8 +45,8 @@ def login():
         else:
             session["role"] = USERS.get(session["username"]).get("role")
         return redirect(url_for("data_list"))
-    # practice start
-    # practice end
+    # ========== practice start ==========
+    # ========== practice end ==========
 
 
 @blueprint_options_auth_app.route("/logout")

@@ -1,18 +1,18 @@
 from functools import wraps
 from pathlib import Path
 
-# practice start
+# ========== practice start ==========
 from flask import (Blueprint, Flask, redirect, render_template, request,
                    session, url_for)
 
 from flask_session import Session
 
-# practice end
+# ========== practice end ==========
 
 
-# practice start
+# ========== practice start ==========
 auth_app = Blueprint('auth_app', __name__)
-# practice end
+# ========== practice end ==========
 
 USERS = {
     "alice": {"password": "aliceP@ssw0rd", "role": "user"},
@@ -25,9 +25,9 @@ def login_required(role=None):
         @wraps(f)
         def wrapper(*args, **kwargs):
             if "username" not in session:
-                # practice start
+                # ========== practice start ==========
                 return redirect(url_for("auth_app.login"))
-                # practice start
+                # ========== practice start ==========
             if role and session.get("role") != role:
                 print(f"session.get('role')={session.get('role')}, role={role}")
                 return render_template(
@@ -41,9 +41,9 @@ def login_required(role=None):
     return decorator
 
 
-# practice start
+# ========== practice start ==========
 @auth_app.route("/login", methods=["GET", "POST"])
-# practice end
+# ========== practice end ==========
 def login():
     if request.method == "POST":
         if request.form["username"] not in USERS.keys():
@@ -58,9 +58,9 @@ def login():
     return render_template("login.html", page_header="Login")
 
 
-# practice start
+# ========== practice start ==========
 @auth_app.route("/logout")
-# practice end
+# ========== practice end ==========
 def logout():
     session.clear()
     return redirect(url_for("index"))

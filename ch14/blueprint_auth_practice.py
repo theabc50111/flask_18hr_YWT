@@ -1,16 +1,16 @@
 from functools import wraps
 from pathlib import Path
 
-# practice start
+# ========== practice start ==========
 from flask import Flask, redirect, render_template, request, session, url_for
 
 from flask_session import Session
 
-# practice end
+# ========== practice end ==========
 
 
-# practice start
-# practice end
+# ========== practice start ==========
+# ========== practice end ==========
 
 USERS = {
     "alice": {"password": "aliceP@ssw0rd", "role": "user"},
@@ -23,8 +23,8 @@ def login_required(role=None):
         @wraps(f)
         def wrapper(*args, **kwargs):
             if "username" not in session:
-                # practice start
-                # practice start
+                # ========== practice start ==========
+                # ========== practice start ==========
             if role and session.get("role") != role:
                 print(f"session.get('role')={session.get('role')}, role={role}")
                 return render_template(
@@ -38,8 +38,8 @@ def login_required(role=None):
     return decorator
 
 
-# practice start
-# practice end
+# ========== practice start ==========
+# ========== practice end ==========
 def login():
     if request.method == "POST":
         if request.form["username"] not in USERS.keys():
@@ -54,8 +54,8 @@ def login():
     return render_template("login.html", page_header="Login")
 
 
-# practice start
-# practice end
+# ========== practice start ==========
+# ========== practice end ==========
 def logout():
     session.clear()
     return redirect(url_for("index"))

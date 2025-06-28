@@ -1,11 +1,11 @@
-# practice start
+# ========== practice start ==========
 from flask import Flask, render_template, Markup # Markup() would trust the string that pass to it without escaping.
 from datetime import datetime
-# practice end
+# ========== practice end ==========
 
 app = Flask(__name__)
 
-# practice start
+# ========== practice start ==========
 start_time = datetime(2021, 1, 1, 12, 0, 0)
 
 class MomentJSFlask():
@@ -38,7 +38,7 @@ def index():
     return render_template('moment.html',
                            page_header="page_header",
                            start_time=start_time)
-# practice end
+# ========== practice end ==========
 
 if __name__=="__main__":
     app.run(debug=True)

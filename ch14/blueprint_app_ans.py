@@ -5,16 +5,16 @@ import sqlalchemy as db
 from flask import Flask, render_template, request
 from sqlalchemy import func
 
-# practice start
+# ========== practice start ==========
 from blueprint_auth_ans import auth_app, login_required
-# practice end
+# ========== practice end ==========
 from flask_session import Session
 
 app = Flask(__name__)
 
-# practice start
+# ========== practice start ==========
 app.register_blueprint(auth_app)
-# practice end
+# ========== practice end ==========
 app.config["SECRET_KEY"] = "hard to guess string"
 app.config["SESSION_TYPE"] = "filesystem"
 app.config["SESSION_FILE_DIR"] = Path(__file__).parent / "flask_session"

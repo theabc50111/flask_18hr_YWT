@@ -1,8 +1,8 @@
 from flask import Flask, render_template
 
-# practice start
+# ========== practice start ==========
 from wrapper_init_auth import init_auth
-# practice end
+# ========== practice end ==========
 
 app = Flask(__name__)
 

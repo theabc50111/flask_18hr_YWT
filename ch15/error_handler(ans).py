@@ -9,14 +9,14 @@ def index():
                            page_header="page_header")
 
 
-# practice start
+# ========== practice start ==========
 @app.errorhandler(404)
 def page_not_found(e):
     print(e)
     return render_template('404.html',
                            error_message=e,
                            page_header="Page Not Found",), 404
-# practice end
+# ========== practice end ==========
 
 
 if __name__ == "__main__":

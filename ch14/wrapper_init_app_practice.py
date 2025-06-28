@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 
-# practice start
-# practice end
+# ========== practice start ==========
+# ========== practice end ==========
 
 app = Flask(__name__)
 

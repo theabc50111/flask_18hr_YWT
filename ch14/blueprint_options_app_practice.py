@@ -5,14 +5,14 @@ import sqlalchemy as db
 from flask import Flask, render_template, request
 from sqlalchemy import func
 
-# practice start
-# practice start
+# ========== practice start ==========
+# ========== practice start ==========
 from flask_session import Session
 
 app = Flask(__name__)
 
-# practice start
-# practice end
+# ========== practice start ==========
+# ========== practice end ==========
 app.config["SECRET_KEY"] = "hard to guess string"
 app.config["SESSION_TYPE"] = "filesystem"
 app.config["SESSION_FILE_DIR"] = Path(__file__).parent / "flask_session"
