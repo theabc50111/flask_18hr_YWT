@@ -56,14 +56,14 @@ def index():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        session["username"] = request.form["username"]
-        session["password"] = request.form["password"]
         # ========== practice start ==============
-        if session["username"] not in USERS.keys():
+        if request.form["username"] not in USERS.keys():
             return render_template("index.html", page_header="User not found")
-        elif session["password"] != USERS.get(session["username"]).get("password"):
+        elif request.form["password"] != USERS.get(request.form["username"]).get("password"):
             return render_template("index.html", page_header="Wrong password")
         else:
+            session["username"] = request.form["username"]
+            session["password"] = request.form["password"]
             session["role"] = USERS.get(session["username"]).get("role")
         # ========== practice end ==============
         return redirect(url_for("data_list"))
