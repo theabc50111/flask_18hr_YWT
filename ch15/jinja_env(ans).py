@@ -1,5 +1,6 @@
 # ========== practice start ==========
-from flask import Flask, render_template, Markup # Markup() would trust the string that pass to it without escaping.
+from flask import Flask, render_template
+from markupsafe import Markup # Markup() would trust the string that pass to it without escaping.
 from datetime import datetime
 # ========== practice end ==========
 
