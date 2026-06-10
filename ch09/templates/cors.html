@@ -3,8 +3,8 @@
 {% block title %}index{% endblock title %}
 {% block page_content %}
 {{ super() }}
-<button type="button" class="btn btn-primary" id="fetch_origin_allow_cors">Fetch allowed CORS API</button>
-<button type="button" class="btn btn-primary" id="fetch_origin_not_allow_cors">Fetch not allowed CORS API</button>
+<button type="button" class="btn btn-primary" id="fetch_origin_allow_cors">Fetch weahter API (which allowed CORS)</button>
+<button type="button" class="btn btn-warning" id="fetch_origin_not_allow_cors">Fetch bank API(which not allowed CORS)</button>
 <br>
 <div id='result' class="alert alert-primary" role="alert">
   This is the result area. Click the buttons above to fetch data from the APIs.
