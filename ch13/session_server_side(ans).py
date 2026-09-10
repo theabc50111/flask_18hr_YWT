@@ -39,7 +39,7 @@ def observe_session():
     session_id = request.cookies.get("session")
     session_file_encode_prefix = app.config.get("SESSION_FILE_PREFIX", "session:")
     key = f"{session_file_encode_prefix}{session_id}"
-    session_file_name = hashlib.md5(key.encode("utf-8")).hexdigest()
+    session_file_name = hashlib.sha256(key.encode("utf-8")).hexdigest()
     with open(app.config["SESSION_FILE_DIR"] / f"{session_file_name}", "rb") as f:
         timeout_bytes = f.read(4)
         (expires_at,) = struct.unpack("I", timeout_bytes)
